@@ -1,0 +1,9 @@
+$('#cart').html("<%= escape_javascript(render(@cart)) %>");
+
+$( "#current_item" ).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+
+<% if @cart.total_items >= 1 %>
+	$("#cart").show();
+<% end %>
+
+$('#notice').hide();

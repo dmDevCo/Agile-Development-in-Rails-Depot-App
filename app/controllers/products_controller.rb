@@ -1,6 +1,15 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
+  
+  def who_bought
+	@product = Product.find(params[:id])
+	respond_to do |format|
+	format.atom
+	format.xml { render :xml => @product }
+	end
+  end
+
   # GET /products
   # GET /products.json
   def index
@@ -42,7 +51,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to '/', notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
